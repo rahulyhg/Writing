@@ -261,26 +261,80 @@ python中规则如下:
 
 python支持面向对象，所有还存在类  
 
-### 类  
+### 类(class)  
 python 使用关键字`class`定义一个类  
 
-类中每一个定义的方法都有一个至少有一个参数`self`,它指代实例变量  
 当我们有一个类`Dog`,它这样定义:  
 
-	class Dog:
+	class Dog:  
+		dog_num = 0
 		def __init__(self, name):
 			if name != "":
 				self.name = name
 			else:
 				self.name = "Dog"
+			Dog.dog_num += 1
 
 		def bake(self,s):
 			print self.name+" is baking in " + s
+
+		def __del__(self):
+			Dog.dog_num -= 1
+
 	dog = Dog()
 	dog.bake("bake")
-可以看得到我们实际使用并没有在括号中传入`self`,因为这个是由语言自己管理的  
 
-在这里，我们还可以看到`__init__`方法，这是Dog的构造方法，当实例化此类，将会自动调用  
+
+#### 类变量和实例变量
+
+在类中却在类方法外定义的变量，这是类变量，例如上例的`dog_num` 
+在类方法中定义的变量，形式类似于上述`self.name`,这是实例变量  
+
+类变量为所有对象共有，当任意一个对象对其作了改变，这个改变也会反映在其他实例上  
+
+而实例变量为每个对象所特有，尽管名字相同，但存储空间不一样  
+
+#### 类成员的公共属性和私有属性  
+
+Python的类成员中以双下划线开头的成员，都被认作是私有的,即此数据成员不能在类外访问   
+
+除此之外的其他成员被认为是公共的，即都可以被在类外访问  
+
+##### 一个惯例
+
+也有这样一个惯例(不是python强制规定):如果某个变量只想在类或对象中使用，就应该以单下划线前缀；而其他的名称都将作为公共的，可以被其他类/对象使用  
+#### self变量 
+
+类的方法与普通的函数只有一个特别的区别：它们必须有**一个额外的第一个参数名称**   
+
+
+在调用这个方法的时候你不为这个参数赋值，Python会提供这个值  
+
+
+这个特别的变量指对象本身,这个变量可以任意名称  
+此时，当你的方法中使用实例变量和方法的时候，需要指定此名称为实例变量或方法所属对象,并使用`.`与实例变量或方法连接  
+比如:参数名称为object,而变量为var，那么这样使用:object.var = 'abc'  
+**但是按照惯例它的名称是self**  
+
+*Python如何给self赋值以及为何你不需要给它赋值?*  
+
+假如你有一个类称为MyClass和这个类的一个实例MyObject  
+当你调用这个对象的方法MyObject.method(arg1, arg2)的时候，这会由Python自动转为MyClass.method(MyObject, arg1, arg2)——这就是self的原理了。
+
+这也意味着如果你有一个不需要参数的方法，你还是得给这个方法定义一个self参数  
+
+#### __init__和__del__方法
+
+在Python的类中有很多方法的名字有特殊的重要意义  
+
+`__init__`就是一个很特别的方法，就像C++中的constructor  
+`__del__`就是python的desstructor  
+
+
+当对象被创造时候，自动调用`__init__`方法  
+当对象不再使用，`__del__`方法运行，但很难保证在什么时候运行此方法  
+如果想要指定指明它的运行，需要使用`del语句`  
+
 
 #### python中的继承  
 python允许继承,下面是一个继承的例子  
@@ -431,7 +485,7 @@ python的每个函数都有返回值，即使没有返回值的函数，每个�
 * 
 ---
 
-## 文档  
+## 文档(docstring)  
 
 python中得自动生成文档功能很吸引人：文档字符串  
 
@@ -455,7 +509,7 @@ pydoc命令也是抓取docstring
 
 ---
 
-## 模块  
+## 模块(module)  
 
 一个.py的python程序被其他python程序使用`import`导入使用，那么这个.py的python程序就是一个模块  
 
@@ -517,6 +571,9 @@ pydoc命令也是抓取docstring
 但是这样可能引起命名冲突，也不妨便查看变量所属模块，对于源码阅读和修改造成不变  
 推荐使用方式`import module_name`  
 
+* `import module_name as new_name`  
+> 为模块重新取了个别名  
+
 ### 模块的主块  
 
 当一个源程序被作为模块加载时，首先运行其内部可执行代码，然后才能被能被导入使用，而这段代码通常被称作**主块**  
@@ -562,9 +619,17 @@ pydoc命令也是抓取docstring
 
 ### python中的一些模块  
 
-* sys模块   
-* os模块  
+* sys模块 -- 包含系统对应的功能
+
+	http://sebug.net/paper/python/ch14s02.html 
+
+* os模块  -- 包含普遍的操作系统功能,对于编写与平台无关的程序尤为重要    
+
+	http://sebug.net/paper/python/ch14s03.html  
+
 * time模块   
+
+		time.sleep(seconds) -- 延迟执行seconds
 * zipfile模块  
 * tarfile模块  
 
@@ -640,7 +705,7 @@ list、tuple和str都是序列
 
 ---
 
-## 面向对象  
+## 面向对象(oop)  
 
 把数据和功能结合起来，用称为对象的东西包裹起来组织程序的方法。  
 这种方法称为面向对象的编程理念  
@@ -653,18 +718,111 @@ list、tuple和str都是序列
 我们可以看到有时候使用int(str)把包含数值的str转化成int型数值  
 其他类型也可以这样使用  
 
+---
+
+## 输入/输出  
+
+### 从控制台输入，输出  
+
+* raw_input()  
+* input()  
+* print -- 使用逗号(,)消除换行  
+
+### 对文件的打开，读写  
+
+使用class file   
+
+每一个文件对应一个file对象，然后使用对象的实例方法去操纵文件  
+
+### 储存器(pickle)
+
+Python提供一个标准的模块，称为pickle  
+
+使用它你可以在一个文件中储存任何Python对象，之后你又可以把它完整无缺地取出来。这被称为**持久地储存对象**  
+
+还有另一个模块称为`cPickle`，它的功能和pickle模块完全相同，只不过它是用C语言编写的，因此要快得多（比pickle快1000倍）  
+
+我们把这两个模块都简称为pickle模块  
+
+#### 一个pickle实例  
+
+	#!/usr/bin/python 
+	#coding=utf-8
+	$FileName:use_pickle.py
+
+	import cPickle as p	#import pickle as p
+
+	shoplistfile = 'shoplist.data'
+
+	shoplist = ['apple', 'mango', 'carrot']
+	
+	f = file(shoplistfile, 'w')
+	p.dump(shoplist, f)
+	
+	f.close()
+
+	del shoplist 
+
+	f = file(shoplistfile)
+	storedlist = p.load(f)
+
+	print storedlist
+
+
 
 ---
-## python的动态代码  
-把代码当作数据处理，把数据当作代码执行，这是动态语言的魅力  
 
-把数据当作代码执行，怎么实现呢?  
-python提供了几个函数和语句:  
+## 更多python的内容  
 
-### python的读取和写出  
-python使用raw_input(prompt)读取一个字符串  
-python使用print打印value
+### 一些特殊方法
+
+	http://sebug.net/paper/python/ch15.html#s01  
+
+### 单语句块  
+
+	http://sebug.net/paper/python/ch15s02.html  
+
+### 列表综合  
+
+	http://sebug.net/paper/python/ch15s03.html
+
+### python的可变参数列表  
+
+	http://sebug.net/paper/python/ch15s04.html 
+	http://blog.csdn.net/delphiwcdj/article/details/5746560  
+
+当在函数的参数中使用`*`和`**`作为参数前缀，则此参数将变为可变参数  
+
+`*args`多余的参数组成一个元组，存储在args中  
+
+`**args`多余参数将会作为一个字典的键值对，存储在args中.args是一个字典  
+
+`**args`时，函数传的键值对的形式为:`标识符='字符串'`
+
+
+### lambda语句 
+
+python可使用lambda语句创建一个只有**一行语句**，而且**语句为表达式**的函数对象  
+并在运行时返回它  
+
+lambda定义的函数可以有多个参数  
+
+lambda的使用原型:`aa = lambda x,y[,args]: x和y组成的表达式`  
+
+实例:  
+
+	#!/usr/bin/python2.7 
+	#coding=utf-8 
+	def make_repeater(n):
+		return lambda s: s*n
+
+	twice = make_repeater(2)
+
+	print twice('word')
+	print twice(5)
+
 ### eval()函数
+
 计算表达式的值并返回或者计算`compile()`函数生成的code object
 
 	#coding=utf-8
@@ -674,7 +832,11 @@ python使用print打印value
 	code = "".join(l)
 	print l+" = "str(eval(code))
 
+
+input(prompt) == eval(raw_input(prompt))
+
 ### exec语句  
+
 可以执行python代码(多行)，也可以执行`compile()`编译得到的code object
 
 	#coding=utf-8
@@ -684,9 +846,11 @@ python使用print打印value
 	exec byte_code
 	
 ### execfile()函数
+
 执行指定的python文件  
 
 ### compile()函数
+
 把语句编译成code object,根据编译选项的不同，生成不同的code object  
 
 	$coding=utf-8
@@ -700,14 +864,34 @@ python使用print打印value
 
 	#还有个single,编译成单行code object
 
-### input(prompt)函数
-input(prompt) == eval(input(prompt))
+### assert语句  
 
-	#coding=utf-8
-	#A simple caculator 
-	
-	while True:
-		print input("> ")
+	http://sebug.net/paper/python/ch15s07.html
+
+### repr函数  
+
+repr函数用来取得对象的规范字符串表示  
+
+反引号（也称转换符）可以完成相同的功能  
+
+注意，在大多数时候有eval(repr(object)) == object  
+
+基本上，repr函数和反引号用来获取对象的可打印的表示形式。  
+
+你可以通过定义类的__repr__方法来控制你的对象在被repr函数调用的时候返回的内容  
+
+	http://sebug.net/paper/python/ch15s08.html
+
+---
+
+## python图形编程  
+
+* PyQt  
+* PyGTK  
+* wxPython  
+* TkInter  
+
+--- 
 
 
 ## 一些牛叉的对列表操纵的函数  
@@ -751,26 +935,8 @@ filter()相当于一个过滤器，会把list,tuple,string中的每一个元素�
 	print ""
 	print reduce(multiply, x, 2)
 
+## 异常捕获(exception)  
 
-### lambda语句  
-python可使用lambda语句创建一个只有一行语句，而且语句为表达式的函数对象    
-lambda定义的函数可以有多个参数  
-
-lambda的使用原型:`aa = lambda x,y[,args]: x和y组成的表达式`  
-
-实例:  
-
-	#!/usr/bin/python2.7 
-	#coding=utf-8 
-	def make_repeater(n):
-		return lambda s: s*n
-
-	twice = make_repeater(2)
-
-	print twice('word')
-	print twice(5)
-
-## 异常捕获  
 异常捕获就是通过某个关键字包含运行的代码，如果代码在运行时发生错误，则会执行异常处理代码  
 
 python提供了`try`,`except`,`finally`,`raise`关键字  
@@ -797,10 +963,13 @@ python提供了`try`,`except`,`finally`,`raise`关键字
 	However this sentence will be printed
 
 `try:`模块中的代码为异常检测代码  
-`except:`模块中的代码为异常处理代码，
-`except`后面可跟具体的异常对象，当有多个异常对象时，使用括号`(异常1,异常2...)`括起来  
-`except`后面无任何对象时，指捕获所有异常  
+
+`except:`模块中的代码为异常处理代码
+可跟具体的异常对象，当有多个异常对象时，使用括号`except (异常1,异常2...)`括起来  
+后面无任何对象时，指捕获所有异常  
+
 `finally:`模块的代码是无论异常发不发生，都将执行的 
+
 `raise`可以主动发出异常信号  
 
 ### python定义的异常对象  
