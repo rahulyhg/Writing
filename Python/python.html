@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#python的简易参考教程">python的简易参考教程</a></li>
+<li><a href="#值得思考的一些东西">值得思考的一些东西</a></li>
+<li><a href="#正式使用python前">正式使用python前</a><ul>
+<li><a href="#编译安装python">编译安装python</a></li>
+<li><a href="#检查python的版本">检查python的版本</a></li>
+<li><a href="#两种使用python运行程序的方式">两种使用python运行程序的方式</a></li>
+<li><a href="#挑选你喜欢的编辑器">挑选你喜欢的编辑器</a></li>
+</ul></li>
+<li><a href="#开始python之旅">开始python之旅</a><ul>
+<li><a href="#一个简单完整的python程序">一个简单，完整的python程序</a></li>
+<li><a href="#获取帮助">获取帮助</a></li>
+</ul></li>
+<li><a href="#基本概念">基本概念</a><ul>
+<li><a href="#字面意义上的常量">字面意义上的常量</a></li>
+<li><a href="#数">数</a></li>
+<li><a href="#字符串str">字符串(str)</a></li>
+<li><a href="#变量">变量</a></li>
+<li><a href="#数据类型">数据类型</a></li>
+<li><a href="#类class">类(class)</a></li>
+</ul></li>
+<li><a href="#运算符和表达式">运算符和表达式</a><ul>
+<li><a href="#python中几个特别的运算符">python中几个特别的运算符</a></li>
+<li><a href="#运算符的优先级">运算符的优先级</a></li>
+</ul></li>
+<li><a href="#控制流">控制流</a></li>
+<li><a href="#函数">函数</a><ul>
+<li><a href="#定义函数">定义函数</a></li>
+<li><a href="#默认参数">默认参数</a></li>
+<li><a href="#关键参数">关键参数</a></li>
+<li><a href="#return-none">return None</a></li>
+<li><a href="#一些内建的函数">一些内建的函数</a></li>
+</ul></li>
+<li><a href="#文档docstring">文档(docstring)</a></li>
+<li><a href="#模块module">模块(module)</a><ul>
+<li><a href="#从sys模块导入开始">从sys模块导入开始</a></li>
+<li><a href="#pyc字节码文件">.pyc字节码文件</a></li>
+<li><a href="#导入模块的语句">导入模块的语句</a></li>
+<li><a href="#模块的主块">模块的主块</a></li>
+<li><a href="#dir函数和del语句">dir()函数和del语句</a></li>
+<li><a href="#python中的一些模块">python中的一些模块</a></li>
+</ul></li>
+<li><a href="#python的数据结构">python的数据结构</a><ul>
+<li><a href="#list">list</a></li>
+<li><a href="#tuple">tuple</a></li>
+<li><a href="#dict">dict</a></li>
+<li><a href="#序列">序列</a></li>
+</ul></li>
+<li><a href="#面向对象oop">面向对象(oop)</a></li>
+<li><a href="#输入输出">输入/输出</a><ul>
+<li><a href="#从控制台输入输出">从控制台输入，输出</a></li>
+<li><a href="#对文件的打开读写">对文件的打开，读写</a></li>
+<li><a href="#储存器pickle">储存器(pickle)</a></li>
+</ul></li>
+<li><a href="#更多python的内容">更多python的内容</a><ul>
+<li><a href="#一些特殊方法">一些特殊方法</a></li>
+<li><a href="#单语句块">单语句块</a></li>
+<li><a href="#列表综合">列表综合</a></li>
+<li><a href="#python的可变参数列表">python的可变参数列表</a></li>
+<li><a href="#lambda语句">lambda语句</a></li>
+<li><a href="#eval函数">eval()函数</a></li>
+<li><a href="#exec语句">exec语句</a></li>
+<li><a href="#execfile函数">execfile()函数</a></li>
+<li><a href="#compile函数">compile()函数</a></li>
+<li><a href="#assert语句">assert语句</a></li>
+<li><a href="#repr函数">repr函数</a></li>
+</ul></li>
+<li><a href="#python图形编程">python图形编程</a></li>
+<li><a href="#一些牛叉的对列表操纵的函数">一些牛叉的对列表操纵的函数</a><ul>
+<li><a href="#filter函数返回值为真的过滤器">filter()函数–返回值为真的过滤器</a></li>
+<li><a href="#reduce函数">reduce()函数</a></li>
+</ul></li>
+<li><a href="#异常捕获exception">异常捕获(exception)</a><ul>
+<li><a href="#python定义的异常对象">python定义的异常对象</a></li>
+</ul></li>
+</ul>
+</div>
+<h2 id="python的简易参考教程"><a href="#python的简易参考教程">python的简易参考教程</a></h2>
+<p>http://sebug.net/paper/python/index.html</p>
+<h2 id="值得思考的一些东西"><a href="#值得思考的一些东西">值得思考的一些东西</a></h2>
+<blockquote>
+<p>有两种方式构建软件设计： 一种是把软件做地很简单以至于明显找不到缺陷； 另一种是把它做得很复杂以至于找不到明显的缺陷</p>
+<p>—C.A.R. Hoare</p>
+<p>获得人生中的成功需要的专注与坚持不懈多过天才与机会</p>
+<p>—C.W. Wendte</p>
+</blockquote>
+<h2 id="正式使用python前"><a href="#正式使用python前">正式使用python前</a></h2>
+<h3 id="编译安装python"><a href="#编译安装python">编译安装python</a></h3>
+<p>你可从<br />&gt; http://www.python.org/download/</p>
+<p>下载python源码，然后按照网站上的帮助编译安装</p>
+<h3 id="检查python的版本"><a href="#检查python的版本">检查python的版本</a></h3>
+<p>假如你是一个Linux用户，那么很可能你的系统已经继承了python<br />打开一个终端，试试这个命令:</p>
+<pre><code>$ python -V 
+Python 2.7.6  </code></pre>
+<p>事实上，python2和python3还是有些差异：大多数原来是语句的关键字，变成了内建函数</p>
+<h3 id="两种使用python运行程序的方式"><a href="#两种使用python运行程序的方式">两种使用python运行程序的方式</a></h3>
+<ul>
+<li>使用交互式的带提示符的解释器<br /></li>
+<li>使用源文件</li>
+</ul>
+<h3 id="挑选你喜欢的编辑器"><a href="#挑选你喜欢的编辑器">挑选你喜欢的编辑器</a></h3>
+<p>工欲善其事，必先利其器。选择一个用起来比较爽的编辑器，那么编写程序也变的有意思多</p>
+<p>什么叫比较爽的编辑器?<br />* 代码高亮(这是最基本的) * 可以格式化源码(方便查看在网上获取的源码)<br />* 代码提示，补全(这简直是福音) * 方便相关源文件之间跳转(像C语言中的.h和.c之间的迅速切换) * 可以查看APi(这个不是非常必要，但是有的话，当然最好)</p>
+<p>Linux下使用Vim和Emacs<br />Windows下使用IDLE</p>
+<p>这儿还有一些其他Python编辑器:<code>http://www.python.org/cgi-bin/moinmoin/PythonEditors</code><br />这儿还有一些使用Python的IDE:<code>http://www.python.org/cgi-bin/moinmoin/IntegratedDevelopmentEnvironments</code></p>
+<h2 id="开始python之旅"><a href="#开始python之旅">开始python之旅</a></h2>
+<h3 id="一个简单完整的python程序"><a href="#一个简单完整的python程序">一个简单，完整的python程序</a></h3>
+<p><strong>Hello.py</strong></p>
+<pre><code>#!/usr/bin/python 
+#coding=utf-8
+&#39;&#39;&#39;
+This is a simple python program example
+&#39;&#39;&#39;
+#定义了一个hello()函数,需要一个字符串作为参数
+def hello(s):
+    a = &quot;hello,&quot;
+    a +=s
+    print a
+
+hello(&quot;python&quot;) #调用hello()函数  
+
+# 或者你可以直接打印  
+print &quot;hello,python&quot;
+
+#或者使用;来把多行语句写在一行  
+a = &quot;hello,python&quot;;print a</code></pre>
+<h4 id="运行"><a href="#运行">运行</a></h4>
+<pre><code>$ python hello.py</code></pre>
+<p>或者</p>
+<pre><code>$ chmod a+x hello.py
+$ ./hello.py</code></pre>
+<h4 id="关于hello.py的一些解释"><a href="#关于hello.py的一些解释">关于hello.py的一些解释</a></h4>
+<h5 id="关于注释"><a href="#关于注释">关于注释</a></h5>
+<p>Python的两种注释:<br />1. 以#号开始是python的单行注释<br />2. 以2组三个单引号(‘’’)包裹的是python的块注释</p>
+<p>第一行注释指明了解释此python程序的解释器位置<br />&gt; 如果有了第一行，那么当hello.py具有可执行权限(<code>chmod a+x hello.py</code>)时，直接指明位置即可运行此程序； &gt; 当然你也可以直接使用<code>python hello.py</code>指明解释器来运行此程序，那么此时就不需要写这行注释</p>
+<h5 id="关于编码类型"><a href="#关于编码类型">关于编码类型</a></h5>
+<p>第二行注释指明了python所使用的编码类型<br />&gt; 如果没有第二行，那么你就不可以在你的源码中使用中文，即使在注释中使用中文，也不可以<br />&gt; 因为python默认是以ASCII作为编码方式，如果在源码中包含了中文了，即使你以utf-8格式保存源码也不可以正确执行<br />&gt; 因此最明智的做法,在使用中文前生命编码方式:<code>#coding=utf-8</code></p>
+<h5 id="关于缩进和块"><a href="#关于缩进和块">关于缩进和块</a></h5>
+<p>可以看到，python使用<code>:</code>说明可以开始一个块，使用缩进来划分块<br />这意味着同一层次的语句必须有相同的缩进<br />缩进就是行首的空白,不是仅仅指<code>tab</code><br />不要混合使用<code>tab</code>和空格来缩进，因为这在跨越不同的平台的时候，无法正常工作<br />三种建议的风格:单个tab或者两个空格或者四个空格<br />选择一种风格，然后一贯使用它，这是好的做法</p>
+<h5 id="关于语句"><a href="#关于语句">关于语句</a></h5>
+<p>python的希望一行就是一个语句，以换行符作为语句结束标志<br />同样，它也可以使用<code>;</code>来分割语句，使多个语句可以位于一行<br />但是尽可能单独称呼吧，这样代码变得清晰明了</p>
+<h3 id="获取帮助"><a href="#获取帮助">获取帮助</a></h3>
+<p>python包罗万象，基本所有你可以想象的功能都有<br />万象也就意味着杂<br />但是python提供了一个好的帮助方式</p>
+<pre><code>$ python
+Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+[GCC 4.8.2] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; help(print)</code></pre>
+<p>是的，通过在命令行键入<code>python</code>进入python交互模式<br />然后，在交互模式中使用help函数查看API文档</p>
+<p>如果仅仅使用help()，那么将可以进入help模式<br />help模式下，你直接输入函数名或者类名就可以查看帮助了</p>
+<p>如果还觉得不足，那么google吧</p>
+<h2 id="基本概念"><a href="#基本概念">基本概念</a></h2>
+<h3 id="字面意义上的常量"><a href="#字面意义上的常量">字面意义上的常量</a></h3>
+<p>2、1.23、9.25e-3和’This is a string’都是字面意义上的常量</p>
+<p>根据其字面意义，即可知道其类型和具体的值</p>
+<p>不能改变，因此是一个常量</p>
+<h3 id="数"><a href="#数">数</a></h3>
+<p>Python中有4中类型的数:<code>int、long、float、complex</code></p>
+<p>声明一个复数(-5-4j):<code>int n = complex(-5, -4)</code></p>
+<h3 id="字符串str"><a href="#字符串str">字符串(str)</a></h3>
+<p>字符串是字符的序列，但是python中并没有char类型，而是str.<br />不过，这无丝毫使用的影响</p>
+<p>在python中定义一个字符串</p>
+<ul>
+<li><p>使用单引号(‘)<br />&gt; 使用单引号指示字符串，例如’Quote me on thi’. &gt; 所有的空白，即空格和制表符都照原样保留</p></li>
+<li><p>使用双引号(“)<br />&gt; 双引号的字符串与单引号中的字符串使用完全一一致(这一点Php使用者注意)<br />&gt; 例如:”What’s your name?&quot;</p></li>
+<li><p>使用三引号(‘’’或“”“)<br />&gt; 利用三引号，你可以指示一个多行的字符串<br />&gt; 在三引号字符串中你还可以使用单引号和双引号<br />&gt; 例如:<br />&gt; ’’’This is a multi-line string. This is the first line. &gt; This is the second line. &gt;”What’s your name?“,” I asked. &gt; He said “Tom.” &gt;’’’</p></li>
+<li><p>转义符<br />&gt; 如果你想要在字符串中最终显示具有特殊意义的字符，那么必须使用()来转意<br />&gt; 比如要在字符串中保留<code>\n</code>,而不是换行：<code>&quot;This is \n, not newline&quot;</code><br />&gt;<br />&gt;值得注意的一件事是，在一个字符串中，行末的单独一个反斜杠表示字符串在下一行继续，而不是开始一个新的行。</p></li>
+<li><p>自然字符串<br />&gt; 你如果想要显示特殊意义的字符，而不想使用转义符<code>\</code><br />&gt; 那么你需要使用自然字符串，只需要在正常字符串前添加r或者R<br />&gt; 例如: <code>r&quot;Newlines are indicated by \n&quot;</code></p></li>
+<li><p>Unicode字符串<br />&gt; python允许处理Unicode文本，只需要在正常字符串前添加u即可<br />&gt; 例如: <code>u&quot;This is a Unidcode string&quot;</code> &gt; &gt; 记住，在你处理文本文件的时候使用Unicode字符串，特别是当你知道这个文件含有用非英语的语言写的文本</p></li>
+</ul>
+<p>字符串是不可变的，即字符串不能被修改</p>
+<p>所有两个相邻的字符串都将被合并成一个字符串,例如:</p>
+<pre><code>    &quot;what&#39;s&quot;&#39; your name&#39;  == &quot;what&#39;s your name&quot;</code></pre>
+<p>或者，你可以使用<code>+</code>号来合并两个字符串:</p>
+<pre><code>    &quot;what&#39;s &quot;+&quot;your name&quot;</code></pre>
+<h4 id="字符串的操作"><a href="#字符串的操作">字符串的操作</a></h4>
+<p>字符串的操作，无论是哪门语言，都是很重要的</p>
+<p>请参考:</p>
+<pre><code>    http://wangwei007.blog.51cto.com/68019/903426 
+    http://sebug.net/paper/python/ch09s07.html</code></pre>
+<p>或者使用python的help模式</p>
+<p>在或者google吧</p>
+<h3 id="变量"><a href="#变量">变量</a></h3>
+<p>python的变量不需要声明或定义数据类型，使用变量时只需要给它赋一个值,它是根据具体赋值来确定处理什么类型的</p>
+<p>因此存在这样一种情况：变量<code>a</code>开始是<code>int</code>的型的，在后面的某个时刻因为某个赋值，变成<code>list</code>类型</p>
+<h4 id="标识符的命名"><a href="#标识符的命名">标识符的命名</a></h4>
+<p>标识符是用来表示某样东西(函数，变量)的名字</p>
+<p>python中规则如下:</p>
+<ul>
+<li><p>第一个字符必须是字母或者下划线(’_’)</p></li>
+<li><p>其他部分可以由字母、下划线或数字组成</p></li>
+<li><p>标识符大小写敏感</p></li>
+</ul>
+<h4 id="定义变量"><a href="#定义变量">定义变量</a></h4>
+<p>我们使用标识符为变量命名:</p>
+<pre><code>#!/usr/bin/python 
+#coding=utf-8  
+
+a = 3   #定义了int型变量  
+print a
+
+a = 3.4 #定义了一个float型变量  
+print a 
+
+a = &quot;string&quot; #定义了一个字符串
+print a</code></pre>
+<h4 id="关于全局变量和局部变量"><a href="#关于全局变量和局部变量">关于全局变量和局部变量</a></h4>
+<p>全局变量使用<code>global</code>语句</p>
+<p>具体参考：<a href="http://sebug.net/paper/python/ch07s03.html">python中的局部变量和全局变量</a></p>
+<h3 id="数据类型"><a href="#数据类型">数据类型</a></h3>
+<p>变量可以处理不同类型的值,称为数据类型</p>
+<p>基本的类型是数和字符串</p>
+<p>python支持面向对象，所有还存在类</p>
+<h3 id="类class"><a href="#类class">类(class)</a></h3>
+<p>python 使用关键字<code>class</code>定义一个类</p>
+<p>当我们有一个类<code>Dog</code>,它这样定义:</p>
+<pre><code>class Dog:  
+    dog_num = 0
+    def __init__(self, name):
+        if name != &quot;&quot;:
+            self.name = name
+        else:
+            self.name = &quot;Dog&quot;
+        Dog.dog_num += 1
+
+    def bake(self,s):
+        print self.name+&quot; is baking in &quot; + s
+
+    def __del__(self):
+        Dog.dog_num -= 1
+
+dog = Dog()
+dog.bake(&quot;bake&quot;)</code></pre>
+<h4 id="类变量和实例变量"><a href="#类变量和实例变量">类变量和实例变量</a></h4>
+<p>在类中却在类方法外定义的变量，这是类变量，例如上例的<code>dog_num</code> 在类方法中定义的变量，形式类似于上述<code>self.name</code>,这是实例变量</p>
+<p>类变量为所有对象共有，当任意一个对象对其作了改变，这个改变也会反映在其他实例上</p>
+<p>而实例变量为每个对象所特有，尽管名字相同，但存储空间不一样</p>
+<h4 id="类成员的公共属性和私有属性"><a href="#类成员的公共属性和私有属性">类成员的公共属性和私有属性</a></h4>
+<p>Python的类成员中以双下划线开头的成员，都被认作是私有的,即此数据成员不能在类外访问</p>
+<p>除此之外的其他成员被认为是公共的，即都可以被在类外访问</p>
+<h5 id="一个惯例"><a href="#一个惯例">一个惯例</a></h5>
+<p>也有这样一个惯例(不是python强制规定):如果某个变量只想在类或对象中使用，就应该以单下划线前缀；而其他的名称都将作为公共的，可以被其他类/对象使用<br />#### self变量</p>
+<p>类的方法与普通的函数只有一个特别的区别：它们必须有<strong>一个额外的第一个参数名称</strong></p>
+<p>在调用这个方法的时候你不为这个参数赋值，Python会提供这个值</p>
+<p>这个特别的变量指对象本身,这个变量可以任意名称<br />此时，当你的方法中使用实例变量和方法的时候，需要指定此名称为实例变量或方法所属对象,并使用<code>.</code>与实例变量或方法连接<br />比如:参数名称为object,而变量为var，那么这样使用:object.var = ‘abc’<br /><strong>但是按照惯例它的名称是self</strong></p>
+<p><em>Python如何给self赋值以及为何你不需要给它赋值?</em></p>
+<p>假如你有一个类称为MyClass和这个类的一个实例MyObject<br />当你调用这个对象的方法MyObject.method(arg1, arg2)的时候，这会由Python自动转为MyClass.method(MyObject, arg1, arg2)——这就是self的原理了。</p>
+<p>这也意味着如果你有一个不需要参数的方法，你还是得给这个方法定义一个self参数</p>
+<h4 id="init和__del__方法"><a href="#init和__del__方法"><strong>init</strong>和__del__方法</a></h4>
+<p>在Python的类中有很多方法的名字有特殊的重要意义</p>
+<p><code>__init__</code>就是一个很特别的方法，就像C++中的constructor<br /><code>__del__</code>就是python的desstructor</p>
+<p>当对象被创造时候，自动调用<code>__init__</code>方法<br />当对象不再使用，<code>__del__</code>方法运行，但很难保证在什么时候运行此方法<br />如果想要指定指明它的运行，需要使用<code>del语句</code></p>
+<h4 id="python中的继承"><a href="#python中的继承">python中的继承</a></h4>
+<p>python允许继承,下面是一个继承的例子</p>
+<pre><code>#coding=utf-8
+print &quot;Object-Oriented Programming&quot;
+class Animal:
+    def __init__(self, atype):
+        if atype != &quot;&quot;:
+            self.atype=atype
+        else:
+            self.atype=&quot;Animal&quot;
+class Dog(Animal):
+    def __init__(self, name):
+        Animal.__init__(self, &quot;dog&quot;)
+        if name != &quot;&quot;:
+            self.name=name
+        else:
+            self.name=&quot;&quot;
+    def desc(self):
+        if(self.name != &quot;&quot;):
+            print &quot;The &quot;+self.atype+&quot;&#39;s name is &quot;+self.name
+        else:
+            print &quot;The &quot;+self.atype+&quot; has no name&quot;
+
+dog = Dog(&quot;&quot;)
+dog.desc()</code></pre>
+<h4 id="使用函数type来打印类型"><a href="#使用函数type来打印类型">使用函数type来打印类型</a></h4>
+<p>幸好，python提供了函数<code>type</code>来确定变量的类型，不然还真可能糟糕透顶</p>
+<p>比如:<br /> &gt;&gt;&gt; a=2 &gt;&gt;&gt; type(a) <type 'int'> &gt;&gt;&gt; a=“this is a str” <type 'str'></p>
+<p>python中不仅变量有类型，python中所有的对象都有类型<br />如果声明一个函数，那么它的类型<code>function</code> 如果声明一个类,那么它的类型<code>classobj</code></p>
+<p>当我们不知道某个标识符的类型时，我们都可以使用<code>type(indetifier)</code>来明确类型</p>
+<hr />
+<h2 id="运算符和表达式"><a href="#运算符和表达式">运算符和表达式</a></h2>
+<h3 id="python中几个特别的运算符"><a href="#python中几个特别的运算符">python中几个特别的运算符</a></h3>
+<ul>
+<li><p><code>*</code> – 乘<br />&gt; 关于乘法需要说的是：字符串与数字相乘，会扩展字符串,例如<br />&gt;<br />&gt; &gt;&gt;&gt; a = “str”*5 &gt; strstrstrstrstr</p></li>
+<li><p><code>**</code> – 幂<br />&gt; 返回x的y次幂<br />&gt; 例如: <code>3**4</code> == <code>3*3*3*3</code></p></li>
+<li><p><code>//</code> – 取整除<br />&gt; 返回商的整数部分<br />&gt; 例如: <code>4//3.0</code> == <code>1.0</code></p></li>
+<li><p><code>not</code> – 布尔‘非’<br />&gt; 没有C语言和php中的<code>!</code></p></li>
+<li><p><code>and</code> – 布尔‘与’<br />&gt; 没有C语言和php中的<code>&amp;&amp;</code></p></li>
+<li><p><code>or</code> – 布尔‘或’<br />&gt; 没有C语言和php中的<code>||</code></p></li>
+</ul>
+<h3 id="运算符的优先级"><a href="#运算符的优先级">运算符的优先级</a></h3>
+<p>运算符的优先级决定了表达式的计算顺序</p>
+<p>可以参考:<a href="http://sebug.net/paper/python/ch05s03.html">Python运算符优先级</a></p>
+<hr />
+<h2 id="控制流"><a href="#控制流">控制流</a></h2>
+<p>if , for , while</p>
+<ul>
+<li><p>if使用参考：<a href="http://sebug.net/paper/python/ch06s02.html">python中的if语句</a></p></li>
+<li><p>for使用参考：<a href="http://sebug.net/paper/python/ch06s04.html">python中的for语句</a></p></li>
+<li><p>while使用参考：<a href="http://sebug.net/paper/python/ch06s03.html">python中的while语句</a></p></li>
+</ul>
+<p><em>需要注意的是</em>：<br />&gt; while语句和for语句后可以使用else，如果包含else，它总是在for循环结束后执行一次，除非遇到break语句</p>
+<hr />
+<h2 id="函数"><a href="#函数">函数</a></h2>
+<h3 id="定义函数"><a href="#定义函数">定义函数</a></h3>
+<pre><code>def functionName([参数列表]):
+    函数体 </code></pre>
+<h3 id="默认参数"><a href="#默认参数">默认参数</a></h3>
+<p>只有在形参表末尾的那些参数可以有默认参数值<br />即你不能在声明函数形参的时候，先声明有默认值的形参而后声明没有默认值的形参</p>
+<p>可参考：<a href="http://sebug.net/paper/python/ch07s04.html">python函数中的默认参数</a></p>
+<h3 id="关键参数"><a href="#关键参数">关键参数</a></h3>
+<p>调用函数指定参数名赋值，可以忽略传参的顺序</p>
+<p>具体参考：<a href="http://sebug.net/paper/python/ch07s05.html">python函数中的关键参数</a></p>
+<h3 id="return-none"><a href="#return-none">return None</a></h3>
+<p>python的每个函数都有返回值，即使没有返回值的函数，每个函数都在结尾暗含<code>retun None</code></p>
+<p><code>None</code>是python中表示没有任何东西的特殊类型(NoneType)</p>
+<p>如果一个变量的值为<code>None</code>，那么表示它没有值</p>
+<p><code>pass</code>在python中表示一个空的语句块</p>
+<p>因此，定义一个返回值为<code>None</code>,无任何语句的函数:</p>
+<pre><code>&gt;&gt;&gt; def func():
+...     pass
+...
+&gt;&gt;&gt;print func()
+None
+&gt;&gt;&gt; type(func())
+&lt;Type &#39;NoneType&#39;&gt;</code></pre>
+<h3 id="一些内建的函数"><a href="#一些内建的函数">一些内建的函数</a></h3>
+<ul>
+<li>len(str) – 返回字符串和其他序列(list,dict,tuple)的长度<br /></li>
+<li><p>range(start, end [, step]) – 返回一个列表</p>
+<pre><code>&gt;&gt;&gt; range(1, 5)
+[1, 2, 3, 4]
+&gt;&gt;&gt; range(1, 5, 3)
+[1, 4]</code></pre></li>
+<li><hr /></li>
+</ul>
+<h2 id="文档docstring"><a href="#文档docstring">文档(docstring)</a></h2>
+<p>python中得自动生成文档功能很吸引人：文档字符串</p>
+<p>文档字符串是Python中的一个很奇妙的特性，简称<strong>docstring</strong></p>
+<p>那么docstring到底是什么?<br />在函数是第一行的字符串就是这个函数的文档字符串<br />当然不仅仅函数中可以使用，同样模块和类也可以</p>
+<p>docstring的惯例是一个多行字符串(’’’或“”“)<br />它的首行以大写字母开始，句号(.)结尾<br />第二行是空行<br />从第三行开始是详细的描述</p>
+<p>你定义一个函数，使用了docstring,那么你可以打印函数的<code>__doc__</code>属性来读取docstring</p>
+<p>你使用help()功能打印函数的帮助，其实就是打印函数内部的文档字符串</p>
+<p>pydoc命令也是抓取docstring</p>
+<hr />
+<h2 id="模块module"><a href="#模块module">模块(module)</a></h2>
+<p>一个.py的python程序被其他python程序使用<code>import</code>导入使用，那么这个.py的python程序就是一个模块</p>
+<p>所以任意一个python程序都是一个模块</p>
+<h3 id="从sys模块导入开始"><a href="#从sys模块导入开始">从sys模块导入开始</a></h3>
+<pre><code>#!/usr/bin/python 
+#coding=utf-8
+#FileName: using_sys.py 
+
+import sys
+print &quot;打印命令行参数:&quot;
+for i in sys.argv:
+    print i
+
+print &#39;The python path is&#39;, sys.path </code></pre>
+<p>通过以下命令使用:</p>
+<pre><code>$ chmod a+x using_sys.py 
+$ ./using_sys.py I love you
+I
+love
+you
+The python path is [&#39;/home/mwumli/Coding/Python&#39;, &#39;/usr/lib/python2.7&#39;, &#39;/usr/lib/python2.7/plat-x86_64-linux-gnu&#39;, &#39;/usr/lib/python2.7/lib-tk&#39;, &#39;/usr/lib/python2.7/lib-old&#39;, &#39;/usr/lib/python2.7/lib-dynload&#39;, &#39;/usr/local/lib/python2.7/dist-packages&#39;, &#39;/usr/lib/python2.7/dist-packages&#39;, &#39;/usr/lib/python2.7/dist-packages/PILcompat&#39;, &#39;/usr/lib/python2.7/dist-packages/gtk-2.0&#39;, &#39;/usr/lib/pymodules/python2.7&#39;, &#39;/usr/lib/python2.7/dist-packages/ubuntu-sso-client&#39;, &#39;/usr/lib/python2.7/dist-packages/wx-2.8-gtk2-unicode&#39;] </code></pre>
+<h4 id="解释"><a href="#解释">解释</a></h4>
+<p>第一行<code>import sys</code>,我们导入了sys模块，这是一个包含python解释器和它环境有关函数的模块</p>
+<p>导入了模块，我们就可以使用模块里面的东西(函数，变量等)</p>
+<p><code>sys.argv</code>是包含命令行参数的列表 我们可以看到在命令行中输入的参数都被我们打印出来了，和C语言中一样</p>
+<p><code>sys.path</code>是包含python输入模块路径的列表<br />以后我们想使用一个新的模块，只要把新的模块放入这些路径的任意一个路径即可<br /><code>sys.path</code>的第一个元素是一个空字符串，这代表当前目录，即当前目录下python程序也可以被当作一个模块被导入使用</p>
+<h3 id="pyc字节码文件"><a href="#pyc字节码文件">.pyc字节码文件</a></h3>
+<p>.pyc文件是python的字节码文件，是.py的python源程序文件经过编译生成</p>
+<p>单纯加载一个.py的模块，需要先编译此文件，生成二进制字节码文件，然后在加载<br />所以说，加载.pyc的模块明显速度快</p>
+<p>而且.pyc的文件是二进制文件，防止泄漏源码(假如用于商业)，也有反编译的软件</p>
+<h3 id="导入模块的语句"><a href="#导入模块的语句">导入模块的语句</a></h3>
+<ul>
+<li><p><code>import module_name</code><br />&gt; 这种导入方式，我们使用模块中的变量和函数，需要<code>module_name.var</code>或者<code>module_name.function</code></p></li>
+<li><p><code>from module_name import var/function/class</code><br />&gt; 这种导入方式只是导入模块中的某一变量var，然后，我们可以直接使用var,不用<code>module_name.</code>来引用</p></li>
+</ul>
+<p>可以使用<code>from module_name import *</code>来导入所有变量、函数等<br />但是这样可能引起命名冲突，也不妨便查看变量所属模块，对于源码阅读和修改造成不变<br />推荐使用方式<code>import module_name</code></p>
+<ul>
+<li><code>import module_name as new_name</code><br />&gt; 为模块重新取了个别名</li>
+</ul>
+<h3 id="模块的主块"><a href="#模块的主块">模块的主块</a></h3>
+<p>当一个源程序被作为模块加载时，首先运行其内部可执行代码，然后才能被能被导入使用，而这段代码通常被称作<strong>主块</strong></p>
+<p>所以，如果一个源程序作为模块被加载时，应该使其主块代码不会被执行，这样才能<strong>提高加载速度</strong></p>
+<p>每个Python模块都有它的__name<strong>，如果它是’</strong>main__’，这说明这个模块被用户单独运行，我们可以进行相应的恰当操作</p>
+<h4 id="一个典型的模块文件定义"><a href="#一个典型的模块文件定义">一个典型的模块文件定义</a></h4>
+<p>下面是一个典型的模块文件定义:</p>
+<pre><code>#!/usr/bin/python 
+#coding=utf-8
+#FileName: module_demo.py
+
+printf &#39;This code can  be imported as a module&#39;
+
+if __name__ == &#39;__main__&#39;:
+    print &#39;This program is being run by itself&#39;</code></pre>
+<p>运行此程序:</p>
+<pre><code>$ python module_name.py
+This code can be imported as a module
+This program is being run by itself</code></pre>
+<p>把此文件当作模块导入:</p>
+<pre><code>$ python
+&gt;&gt;&gt; import module_name
+This code can be imported as a module
+&gt;&gt;&gt;</code></pre>
+<h3 id="dir函数和del语句"><a href="#dir函数和del语句">dir()函数和del语句</a></h3>
+<p>使用dir()函数可以打印指定模块的标识符(函数、类和变量)<br />如果没有指定，默认打印当前模块的标识符</p>
+<p><strong>需要注意的是:</strong>在指定模块使用<code>import</code>导入的模块的标识符也会被当作指定模块的标识符</p>
+<p><code>del</code>语句可以删除标识符，之后就无法再使用此标识符，除非重新定义</p>
+<h3 id="python中的一些模块"><a href="#python中的一些模块">python中的一些模块</a></h3>
+<ul>
+<li><p>sys模块 – 包含系统对应的功能</p>
+<p>http://sebug.net/paper/python/ch14s02.html</p></li>
+<li><p>os模块 – 包含普遍的操作系统功能,对于编写与平台无关的程序尤为重要</p>
+<p>http://sebug.net/paper/python/ch14s03.html</p></li>
+<li><p>time模块</p>
+<pre><code>time.sleep(seconds) -- 延迟执行seconds</code></pre></li>
+<li>zipfile模块<br /></li>
+<li><p>tarfile模块</p></li>
+</ul>
+<h2 id="python的数据结构"><a href="#python的数据结构">python的数据结构</a></h2>
+<p>数据结构可以处理和存储一组数据的结构</p>
+<p>python有三种内建的数据结构: 列表(list)，元组(tuple),字典(dict)</p>
+<h3 id="list"><a href="#list">list</a></h3>
+<p>list是可变的对象，即可以在列表中移除或添加条目</p>
+<p>使用符号<code>[]</code>来创建</p>
+<h3 id="tuple"><a href="#tuple">tuple</a></h3>
+<p>tuple是不变的对象，故创建后不能改变</p>
+<p>用法基本和list一样，只是不能修改，删除</p>
+<p>使用符号<code>()</code>来创建</p>
+<h4 id="tuple和print的组合使用"><a href="#tuple和print的组合使用">tuple和print的组合使用</a></h4>
+<pre><code>&gt;&gt;&gt; print &quot;%s  is %d years&quot; % (&quot;mwumli&quot;, 21)  
+mwumli is 21 years</code></pre>
+<h3 id="dict"><a href="#dict">dict</a></h3>
+<p>dict是可变的对象</p>
+<p>使用符号<code>{}</code>和键值对<code>...:...</code>来创建</p>
+<h3 id="序列"><a href="#序列">序列</a></h3>
+<p>list、tuple和str都是序列</p>
+<p>序列的两个主要特点是索引操作符(<code>[]</code>)和切片操作符(<code>[num1:num2]</code>)</p>
+<p><code>[]</code>可以让我们从序列中抓取一个特定项目<br /><code>[num1:num2]</code>可以让我们获取序列的一部分，也简称切片</p>
+<h4 id="python中的索引"><a href="#python中的索引">python中的索引</a></h4>
+<p>索引是整数，即可以是正数、0、负数</p>
+<pre><code>&gt;&gt;&gt; a = &quot;abcde&quot;
+&gt;&gt;&gt; print a[0],a[1],a[2],a[3],a[4]
+a b  c d e
+&gt;&gt;&gt; print a[-5],a[-4],a[-3],a[-2],a[-1]
+a b  c d e</code></pre>
+<p>对于list,tuple同理</p>
+<h4 id="python中的切片操作"><a href="#python中的切片操作">python中的切片操作</a></h4>
+<p>切片操作符是序列名后跟一个方括号，方括号中有一对可选的数字(索引)，并用冒号分割</p>
+<p>记住数是可选的，而冒号是必须的</p>
+<pre><code>&gt;&gt;&gt; a = &quot;abcde&quot;
+&gt;&gt;&gt; a[1:3]
+bc
+&gt;&gt;&gt; a[1:]
+bcde
+&gt;&gt;&gt; a[:4]
+abcd
+&gt;&gt;&gt; a[:]
+abcde</code></pre>
+<p>对于list,tuple同理</p>
+<hr />
+<h2 id="面向对象oop"><a href="#面向对象oop">面向对象(oop)</a></h2>
+<p>把数据和功能结合起来，用称为对象的东西包裹起来组织程序的方法。<br />这种方法称为面向对象的编程理念</p>
+<p><em>类和对象</em>是面向对象编程的两个主要方面<br />类创建一个新类型，而对象是这个类的实例<br />这类似你有个int型的变量，这存储整数的变量就是int类的对象</p>
+<p><strong>python中所有标识符数值都组成对象，即便是基本类型int(属于int类),这点是和C++,JAVA不一样的</strong><br />我们可以看到有时候使用int(str)把包含数值的str转化成int型数值<br />其他类型也可以这样使用</p>
+<hr />
+<h2 id="输入输出"><a href="#输入输出">输入/输出</a></h2>
+<h3 id="从控制台输入输出"><a href="#从控制台输入输出">从控制台输入，输出</a></h3>
+<ul>
+<li>raw_input()<br /></li>
+<li>input()<br /></li>
+<li>print – 使用逗号(,)消除换行</li>
+</ul>
+<h3 id="对文件的打开读写"><a href="#对文件的打开读写">对文件的打开，读写</a></h3>
+<p>使用class file</p>
+<p>每一个文件对应一个file对象，然后使用对象的实例方法去操纵文件</p>
+<h3 id="储存器pickle"><a href="#储存器pickle">储存器(pickle)</a></h3>
+<p>Python提供一个标准的模块，称为pickle</p>
+<p>使用它你可以在一个文件中储存任何Python对象，之后你又可以把它完整无缺地取出来。这被称为<strong>持久地储存对象</strong></p>
+<p>还有另一个模块称为<code>cPickle</code>，它的功能和pickle模块完全相同，只不过它是用C语言编写的，因此要快得多（比pickle快1000倍）</p>
+<p>我们把这两个模块都简称为pickle模块</p>
+<h4 id="一个pickle实例"><a href="#一个pickle实例">一个pickle实例</a></h4>
+<pre><code>#!/usr/bin/python 
+#coding=utf-8
+$FileName:use_pickle.py
+
+import cPickle as p #import pickle as p
+
+shoplistfile = &#39;shoplist.data&#39;
+
+shoplist = [&#39;apple&#39;, &#39;mango&#39;, &#39;carrot&#39;]
+
+f = file(shoplistfile, &#39;w&#39;)
+p.dump(shoplist, f)
+
+f.close()
+
+del shoplist 
+
+f = file(shoplistfile)
+storedlist = p.load(f)
+
+print storedlist</code></pre>
+<hr />
+<h2 id="更多python的内容"><a href="#更多python的内容">更多python的内容</a></h2>
+<h3 id="一些特殊方法"><a href="#一些特殊方法">一些特殊方法</a></h3>
+<pre><code>http://sebug.net/paper/python/ch15.html#s01  </code></pre>
+<h3 id="单语句块"><a href="#单语句块">单语句块</a></h3>
+<pre><code>http://sebug.net/paper/python/ch15s02.html  </code></pre>
+<h3 id="列表综合"><a href="#列表综合">列表综合</a></h3>
+<pre><code>http://sebug.net/paper/python/ch15s03.html</code></pre>
+<h3 id="python的可变参数列表"><a href="#python的可变参数列表">python的可变参数列表</a></h3>
+<pre><code>http://sebug.net/paper/python/ch15s04.html 
+http://blog.csdn.net/delphiwcdj/article/details/5746560  </code></pre>
+<p>当在函数的参数中使用<code>*</code>和<code>**</code>作为参数前缀，则此参数将变为可变参数</p>
+<p><code>*args</code>多余的参数组成一个元组，存储在args中</p>
+<p><code>**args</code>多余参数将会作为一个字典的键值对，存储在args中.args是一个字典</p>
+<p><code>**args</code>时，函数传的键值对的形式为:<code>标识符='字符串'</code></p>
+<h3 id="lambda语句"><a href="#lambda语句">lambda语句</a></h3>
+<p>python可使用lambda语句创建一个只有<strong>一行语句</strong>，而且<strong>语句为表达式</strong>的函数对象<br />并在运行时返回它</p>
+<p>lambda定义的函数可以有多个参数</p>
+<p>lambda的使用原型:<code>aa = lambda x,y[,args]: x和y组成的表达式</code></p>
+<p>实例:</p>
+<pre><code>#!/usr/bin/python2.7 
+#coding=utf-8 
+def make_repeater(n):
+    return lambda s: s*n
+
+twice = make_repeater(2)
+
+print twice(&#39;word&#39;)
+print twice(5)</code></pre>
+<h3 id="eval函数"><a href="#eval函数">eval()函数</a></h3>
+<p>计算表达式的值并返回或者计算<code>compile()</code>函数生成的code object</p>
+<pre><code>#coding=utf-8
+def square(x);
+    return x*x
+l = [&#39;square&#39;, &#39;(3)&#39;, &#39;+&#39;, &#39;square&#39;, &#39;(2)&#39;]
+code = &quot;&quot;.join(l)
+print l+&quot; = &quot;str(eval(code))</code></pre>
+<p>input(prompt) == eval(raw_input(prompt))</p>
+<h3 id="exec语句"><a href="#exec语句">exec语句</a></h3>
+<p>可以执行python代码(多行)，也可以执行<code>compile()</code>编译得到的code object</p>
+<pre><code>#coding=utf-8
+code = &quot;print &#39;hh&#39;\n\rprint &#39;tt&#39;&quot;
+exec code
+byte_object = compile(code,&#39;&#39;, &quot;exec&quot;)
+exec byte_code</code></pre>
+<h3 id="execfile函数"><a href="#execfile函数">execfile()函数</a></h3>
+<p>执行指定的python文件</p>
+<h3 id="compile函数"><a href="#compile函数">compile()函数</a></h3>
+<p>把语句编译成code object,根据编译选项的不同，生成不同的code object</p>
+<pre><code>$coding=utf-8
+code = &quot;2+4*3&quot;
+c = compile(code, &#39;&#39;, &#39;eval&#39;) #编译成表达式code object
+print eval(c)
+
+code = &quot;print &#39;hh&#39;\r\nprint &#39;tt&#39;&quot;
+c = compile(code), &#39;&#39;, &#39;exec&#39; #编译成exec型的code object
+exec code
+
+#还有个single,编译成单行code object</code></pre>
+<h3 id="assert语句"><a href="#assert语句">assert语句</a></h3>
+<pre><code>http://sebug.net/paper/python/ch15s07.html</code></pre>
+<h3 id="repr函数"><a href="#repr函数">repr函数</a></h3>
+<p>repr函数用来取得对象的规范字符串表示</p>
+<p>反引号（也称转换符）可以完成相同的功能</p>
+<p>注意，在大多数时候有eval(repr(object)) == object</p>
+<p>基本上，repr函数和反引号用来获取对象的可打印的表示形式。</p>
+<p>你可以通过定义类的__repr__方法来控制你的对象在被repr函数调用的时候返回的内容</p>
+<pre><code>http://sebug.net/paper/python/ch15s08.html</code></pre>
+<hr />
+<h2 id="python图形编程"><a href="#python图形编程">python图形编程</a></h2>
+<ul>
+<li>PyQt<br /></li>
+<li>PyGTK<br /></li>
+<li>wxPython<br /></li>
+<li>TkInter</li>
+</ul>
+<hr />
+<h2 id="一些牛叉的对列表操纵的函数"><a href="#一些牛叉的对列表操纵的函数">一些牛叉的对列表操纵的函数</a></h2>
+<p>map(), filter(), reduce(),lambda() ### map()函数 使用原型:<code>map(function, l1 [, l2])</code></p>
+<p>参数可以是多个</p>
+<p>对列表l1中每一个元素使用function处理，最终返回一个元素为返回值的列表<br />假如有m个列表，那么必然有这么两个限制条件(否则，报错):<br /> * function有m个参数 * 每个列表的item个数相同<br />最后当执行map()，它会将每个列表的元素组合成一个列表作为参数依次处理，最后返回一个和提供参数的列表元素个数相同的列表</p>
+<h3 id="filter函数返回值为真的过滤器"><a href="#filter函数返回值为真的过滤器">filter()函数–返回值为真的过滤器</a></h3>
+<p>使用原型:<code>map(None or function, list or tuple or string)</code></p>
+<p>参数只有一个</p>
+<p>filter()相当于一个过滤器，会把list,tuple,string中的每一个元素当作参数传进function,最后把返回为真的元素组成一个新的list,tuple,string返回</p>
+<h3 id="reduce函数"><a href="#reduce函数">reduce()函数</a></h3>
+<p>使用原型：<code>reduce(function, list [, initial])</code></p>
+<p>使用reduce对列表从左到右依次进行累计应用，假如initial存在，那么initial将作为第一次应用的第一个参数</p>
+<p>阶乘代码实例:</p>
+<pre><code>#coding=utf-8
+def multiply(x,y):
+    print str(x)+&quot;*&quot;+str(y)
+    return x*y
+        
+x = [1, 2, 3, 4, 5]
+print x 
+print &quot;&quot;
+print reduce(multiply, x)
+print &quot;&quot;
+print reduce(multiply, x, 2)</code></pre>
+<h2 id="异常捕获exception"><a href="#异常捕获exception">异常捕获(exception)</a></h2>
+<p>异常捕获就是通过某个关键字包含运行的代码，如果代码在运行时发生错误，则会执行异常处理代码</p>
+<p>python提供了<code>try</code>,<code>except</code>,<code>finally</code>,<code>raise</code>关键字</p>
+<p>捕获异常实例:</p>
+<pre><code>&gt;&gt;&gt;  try:
+...     print &#39;I love Python&#39;
+... except:
+...     print &#39;There is no exception&#39;
+... else:
+...     print &#39;When no exception,print me &#39;
+I love Python 
+When no exception , print me
+&gt;&gt;&gt; try:
+...     print 1/0
+... except:
+...     print &#39;There is a exception&#39;
+... else:
+...     print &#39;This sentence will not print&#39;
+... finally:
+...     print &#39;However this sentence will be printed&#39;
+There is a exception
+However this sentence will be printed</code></pre>
+<p><code>try:</code>模块中的代码为异常检测代码</p>
+<p><code>except:</code>模块中的代码为异常处理代码 可跟具体的异常对象，当有多个异常对象时，使用括号<code>except (异常1,异常2...)</code>括起来<br />后面无任何对象时，指捕获所有异常</p>
+<p><code>finally:</code>模块的代码是无论异常发不发生，都将执行的</p>
+<p><code>raise</code>可以主动发出异常信号</p>
+<h3 id="python定义的异常对象"><a href="#python定义的异常对象">python定义的异常对象</a></h3>
+<ul>
+<li>ArithmeticError — 溢出、除零和浮点错误<br /></li>
+<li>AssertionError — 声明失败时抛出的异常<br /></li>
+<li>AttributeError — 对象不支持所用的属性<br /></li>
+<li>MemoryError — 内存不足<br /></li>
+<li>NameError — 在命名空间未找到局部或全部变量<br /></li>
+<li>SystemError — 解释器内部错误<br /></li>
+<li>IOError — 试图打开不存在的文件<br /></li>
+<li>IndexError — 使用序列中不存在的索引<br /></li>
+<li>KeyError — 使用字典中不存在的键</li>
+</ul>
+<p>print语句中的输出元素之间使用逗号间隔，会自动在输出时使用空格分割<br />例如:</p>
+<pre><code>    &gt;&gt;&gt; print &quot;I&quot;,&quot;love&quot;,&quot;you&quot;
+    I love you</code></pre>
+</body>
+</html>
