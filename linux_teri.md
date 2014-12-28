@@ -11,8 +11,10 @@ ubuntu下没有需要安装
 indent -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
 
 ## Rsyslog(集中日志服务器)
-	用于收集服务器的体质信息用于及时发现错误，处理故障
-	当我执行sudo tail /var/log/messages时候，没有任何输出，在一看发现 /var/log/messages没有内容，找了一下才发现，Ubuntu已经将默认的系统日志记录在了 /var/log/syslog 文件中，加入我们想要找回原来的 /var/log/messages。由于这些日志文件时候 rsyslog服务维护的，我们可以通过修改 syslog的配置文件使其将日志记录在 /var/log/messages.
+用于收集服务器的体质信息用于及时发现错误，处理故障  
+
+当我执行sudo tail /var/log/messages时候，没有任何输出，在一看发现 /var/log/messages没有内容，找了一下才发现，Ubuntu已经将默认的系统日志记录在了 /var/log/syslog 文件中，加入我们想要找回原来的 /var/log/messages。由于这些日志文件时候 rsyslog服务维护的，我们可以通过修改 syslog的配置文件使其将日志记录在 /var/log/messages.  
+
 /etc/rsyslog.d/*.conf 这些配置文件被 /etc/rsyslog.conf 通过 $IncludeConfig 指令包含进来。
 我么可以通过修改 /etc/rsyslog.d/50-default.conf 配置文件实现
 去掉注释或添加：
@@ -26,11 +28,10 @@ sudo service rsyslog restart
 
 ## dmesg打印了的信息来自于哪里即存放位置
 
-javascript:(function(){var a=document.createElement('script');a.src='https://raw.github.com/Elity/erya/master/fuckerya.js';document.body.appendChild(a)})();
 
 ## grep 和 xargs
-###　grep是什么
-###  grep怎么用
+### grep是什么
+### grep怎么用
 
 ###	xxargs
 ### xargs怎么用
