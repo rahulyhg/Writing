@@ -269,3 +269,11 @@ Snapshots：系统快照，保存虚拟系统在某一时刻的全部运行状�
 接着，你就可以查看当前Fuest所有的Snapshot,并对他进行操作了  
 
 对了，回复Snapshot需要在Guest关闭之后才可以  
+
+
+
+## Ubuntu下安装VirtualBox
+
+	$ sudo apt-get install virtualbox
+	$ sudo apt-get install dpkg-dev debhelper virtualbox-guest-additions-iso vde2
+
