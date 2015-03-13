@@ -277,3 +277,31 @@ Snapshots：系统快照，保存虚拟系统在某一时刻的全部运行状�
 	$ sudo apt-get install virtualbox
 	$ sudo apt-get install dpkg-dev debhelper virtualbox-guest-additions-iso vde2
 
+
+---  
+		2015-03-13 17:17:08  
+
+## virtualbox命令行工具的使用  
+
+* 列举当前虚拟机  
+
+		$ VBoxManage list vms
+
+* 使用VRDP方式启动虚拟机  
+
+		$ VBoxManage startvm ubuntu -type vrdp
+
+* 使用Headless启动无前端界面方式  
+
+		$ VBoxHeadless -startvm ubuntu
+
+* 查看虚拟机的运行状态  
+
+		$ VBoxManage list runningvms
+
+
+
+lszsz --windows下使用远程登录工具链接linux，可以使用其快速的传送文件 
+
+rz 
+sz 
