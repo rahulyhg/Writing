@@ -72,7 +72,7 @@ tmux session中的窗口以0开始的编号
 	unbind C-b
 	set -g prefix C-a
 
-然后启动commadn-prompt,输入  
+然后启动command-prompt,输入  
 
 	 source-file ~/.tmux.conf
 通过上面这个操作启用新的配置  
