@@ -19,4 +19,9 @@ sudo apt-get install vim
 	sudo apt-get install nodejs
 	sudo apt-get install rake
 
+	//生成Toc
+	sudo apt-get install  zlib1g-dev
+	sudo gem install nokogiri
+
+
 
